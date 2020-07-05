@@ -1,0 +1,24 @@
+{% extends "blog/base.html "%}<!--extending base.html-->
+{% load crispy_forms_tags %}
+   {% block content%}<!--overriding block-->
+        <div class="content-section">
+          <form   method="POST">
+             {%csrf_token%} <!-- it add security to form.protect from attack-->
+             <fieldset class="form-group">
+               <legend class="border-bottom mb-4" >Join Today</legend><!--it is like a title-->
+              <!-- {{ form.as_p }} .as_p is used for formatting paragraph -->
+                      {{form|crispy}}  <!--form.as.p is not required because we load that crispy tags-->
+             </fieldset>
+             <div class="form-group">
+               <button type="submit" class="btn btn-outline-info">Sign Up</button>
+
+             </div>
+          </form>
+          <div class="border-top pt-3">
+            <small class="text-muted">
+                  Already Have an Account?? <a href="#" class="ml-2">Sign In</a>
+            </small>
+
+          </div>
+        </div>
+{% endblock content %}
