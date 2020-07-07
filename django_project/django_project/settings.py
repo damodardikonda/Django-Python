@@ -122,4 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')#location where actually profile picture will stores..#media is an folder name
+MEDIA_URL='/media/'              # it will access from website by this
+
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
+
+LOGIN_REDIRECT_URL='blog-home' # if username and password of login page is corrected then it goes to blog-home page..
+LOGIN_URL='Login'# if we directly search for profilr then it will send to login page
