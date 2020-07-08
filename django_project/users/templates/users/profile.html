@@ -9,6 +9,18 @@
          <p class="text-secondary">{{ user.email }}</p>
        </div>
 </div>
-<!-- FORM HERE -->
+<form   method="POST" enctype="multipart/form-data"><!-- if you does not include enctype then it does not store image at background-->
+   {%csrf_token%} <!-- it add security to form.protect from attack-->
+   <fieldset class="form-group">
+     <legend class="border-bottom mb-4" >UProfile Info</legend><!--it is like a title-->
+    <!-- {{ form.as_p }} .as_p is used for formatting paragraph -->
+            {{u_form|crispy}}  <!--form.as.p is not required because we load that crispy tags-->
+            {{p_form|crispy}}
+   </fieldset>
+   <div class="form-group">
+     <button type="submit" class="btn btn-outline-info">Update</button>
+
+   </div>
+</form>
 </div>
 {% endblock content %}
