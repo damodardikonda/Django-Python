@@ -12,7 +12,9 @@
                <a class="mr-2" href="#">{{ p.author }}</a>
                     <small class="text-muted">{{ p.date_posted|date:"F d, Y" }}</small>
                 </div>
-             <h2><a class="article-title" href="#">{{ p.title }}</a></h2>
+                <h2><a class="article-title" href="{% url 'post_detail' p.id %}">{{ p.title }}</a></h2>
+<!--if we click on name of
+             post which is present on home then it will show that name of perticuler post post.id because we are passing an pk to their.-->
            <p class="article-content">{{ p.content }}</p>
         </div>
     </article>
