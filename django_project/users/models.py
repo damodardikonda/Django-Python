@@ -19,7 +19,7 @@ class profile(models.Model):
 
     #want to svae the images and resize it..
     def save(self):
-        super.save()# it will save that images
+        super().save()# it will save that images
 
         img=Image.open(self.image.path)#it will open current image ians save it into img
 
