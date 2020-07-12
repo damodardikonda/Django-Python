@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.views.generic import( ListView,
                                   DetailView,
                                   CreateView,#if user want to create view
@@ -7,6 +7,7 @@ from django.views.generic import( ListView,
 )#this is used for creating list and DetailView is used for taking each post detail
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin# if someone doesnt have an account
 #  and he want to post an blog then it will take him to login page
+from django.contrib.auth.models import  User
 from django.http import HttpResponse
 from .models import Post
 # Create your views here.
@@ -22,8 +23,20 @@ class PostListView(ListView):
     model=Post #remember we are providing an class name in to that models
     template_name='blog/home.html'#<app>/<model>_<viewType>.html
     context_object_name='posts'
-    ordering=['-date_posted']# it will place latest post on the top
+    #ordering=['-date_posted']# it will place latest post on the top
+    paginate_by=4
 
+
+class UserPostListView(ListView):
+    model=Post #remember we are providing an class name in to that models
+    template_name='blog/user_posts.html'#<app>/<model>_<viewType>.html
+    context_object_name='posts'
+    # it will place latest post on the top
+    paginate_by=4
+
+    def get_queryset(self):#ifv we ckick on author name then it will display another page
+        user=get_object_or_404(User,username=self.kwargs.get('username'))#it will get another user or if user is not present then 4040
+        return Post.objects.filter(author=user).order_by('-date_posted')#it will only printing that user according through new pos at top
 
 class PostDetailView(DetailView):# it for the dailed view for post
     model=Post

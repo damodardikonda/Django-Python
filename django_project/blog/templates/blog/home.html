@@ -20,4 +20,26 @@
     </article>
 
 {% endfor %}
+{% if is_paginated %}<!-- for paginator-->
+
+     {% if page_obj.has_previous %}<!-- if it has previous page-->
+       <a class="btn btn-outline-info mb-4" href="?page=1">First</a><!--link attach to 1st page-->
+       <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a<!--link attach to previous  page-->
+     {% endif %}
+
+     {% for num in page_obj.paginator.page_range %}
+       {% if page_obj.number == num %}<!--grab thatt page-->
+         <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+       {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}<!-- page within range of 3 towaords previous and next-->
+         <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+       {% endif %}
+     {% endfor %}
+
+     {% if page_obj.has_next %}
+       <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a><!--linkattach to next page-->
+       <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a><!--linkattach to last page-->
+     {% endif %}
+
+   {% endif %}
+
 {% endblock content%}
