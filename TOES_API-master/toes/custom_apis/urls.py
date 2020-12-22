@@ -3,7 +3,7 @@ from .worker_details_views  import display_by_category, display_all, get_specifi
 from .job_views import display_job,display_recruiter_job
 from .requests_views import recruiters_requests, wokers_requests
 from .responses_views import recruiters_response, workers_response
-from .web_views import home_total_wokers , home_total_jobs , home_total_req , home_accept_req
+from .web_views import home_total_wokers , home_total_jobs , home_total_req , home_accept_req , home_smart_reg
 urlpatterns =[
     #Worker_Details
     path('category/<str:category>/', display_by_category ),
@@ -26,6 +26,8 @@ urlpatterns =[
     path('totalworker/' , home_total_wokers , name = 'totalworker'),
     path('totaljobs/' , home_total_jobs , name = 'totaljobs'),
     path('totalreq/',home_total_req , name ='totalreq'),
-    path('Acceptreq/' , home_accept_req , name = 'Acceptreq')
+    path('Acceptreq/' , home_accept_req , name = 'Acceptreq'),
 
+    #without smartphones
+    path('smartreg/' , home_smart_reg , name = 'smartreg'),
 ]

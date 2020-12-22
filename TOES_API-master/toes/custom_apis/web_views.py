@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 import requests
 import json
 
+from authapp.serializers import UserCreateSerializer
 
 
 # for displaying total workers
@@ -118,3 +119,37 @@ def home_accept_req(request):
 
 
      return Response(data = payload, status = status.HTTP_200_OK)
+
+
+
+#Registeration for thoes who doesnt have an smartphones
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def home_smart_reg(request):
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        gender = request.POST.get('gender')
+        address = request.POST.get('address')
+        dob = request.POST.get('dob')
+        aadhar_no = request.POST.get('aadhar_no')
+        work = request.POST.get('work')
+
+        data = {
+
+           'name' : name,
+           'age':age,
+           'phone':phone,
+           'gender':gender,
+           'address':address,
+           'permanent_address': permanent_address,
+           'aadhar_no':aadhar_no,
+           'work':work,
+           'smartphone':'0',
+        }
+
+        create_user_api = 'http://127.0.0.1:8000/smartreg'
+        requests.post(create_user_api , json = data)
+        return Response(data)
