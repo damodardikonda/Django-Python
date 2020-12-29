@@ -6,19 +6,19 @@ from django.contrib.auth.models import (
 ''' For Storing Basic User Information '''
 
 class User(AbstractUser):
-    dob = models.DateField()
-    email = models.EmailField(max_length=255)
-    name = models.CharField(max_length = 255)
+    dob = models.CharField(max_length=255)
     phone = models.CharField(max_length=255,unique=True,blank=False)
-    is_admin = models.BooleanField()
-    gender = models.IntegerField(default=0)
+    is_admin = models.BooleanField(default=False)
+    isVerified = models.BooleanField(default=False)
+    gender = models.CharField(max_length=255)
+    counter = models.IntegerField(default=0,blank=True,null=True)
     address = models.TextField(blank=False)
     smartphone = models.BooleanField(default = True)
     aadhar_no = models.CharField(max_length=255,default=None)
     profile_image = models.ImageField(default=None,upload_to='Profile_images/')
 
-    REQUIRED_FIELDS = ['is_superuser','is_admin','name','username','password',
-                        'dob','gender','aadhar_no', 'profile_image','email','address']
+    REQUIRED_FIELDS = ['is_superuser','is_admin','first_name','last_name','username','password',
+                        'dob','gender','aadhar_no', 'profile_image','address']
 
     USERNAME_FIELD = 'phone'
 
@@ -30,6 +30,7 @@ class User(AbstractUser):
 
 class WorkerDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    worker_name = models.CharField(max_length=255 ,blank=True)
     city = models.CharField(max_length=255,blank=True)
     category_1 = models.CharField(max_length=255,blank=True)
     category_1_vc = models.CharField(max_length=255,blank=True)
@@ -88,6 +89,7 @@ In workers requests tab the data from this table will be provided
 class WorkersRequests(models.Model):
     job_detail = models.ForeignKey(JobDetails, on_delete= models.CASCADE)
     worker = models.ForeignKey(User, on_delete=models.CASCADE)
+    recruiter = models.IntegerField()
     status = models.IntegerField(default = 1)
 
 ''' All the work categories data will be stored in this table '''

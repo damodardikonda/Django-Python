@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,9 @@ SECRET_KEY = '2i0ar3j%__6+e$x#xzh!#r#s=@&^!3c%^!4uv(aw873y@5ks#q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['54.208.232.135','0.0.0.0','*']
 
-
+DJANGO_REST_LOOKUP_FIELD = 'authapp.User.phone'
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'custom_apis',
+
 ]
 
 MIDDLEWARE = [
@@ -93,7 +95,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES':(
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     )
 }
 
@@ -102,7 +104,9 @@ AUTH_USER_MODEL = 'authapp.User'
 DJOSER = {
     'LOGIN_FIELD' : 'phone',
     'USER_CREATE_PASSWORD_RETYPE':True,
-    'PASSWORD_RESET_CONFIRM_URL' : '/users/reset_password/',
+    'PASSWORD_RESET_CONFIRM_URL':'reset/password/reset/confirm/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+
     'SERIALIZER':{
             'user_create':'authapp.serializers.UserCreateSerializer',
             'user':'authapp.serializers.UserCreateSerializer',
@@ -144,5 +148,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-import os
 STATIC_URL = '/static/'
+django_heroku.settings(locals())

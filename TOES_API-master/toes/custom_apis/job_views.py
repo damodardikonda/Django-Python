@@ -15,7 +15,7 @@ def display_job(request , user ):
     cursor = connection.cursor()
     cursor.execute(f'select category_1 , category_2 ,category_3  from authapp_workerdetails where authapp_workerdetails.user_id = {user}')
     row = cursor.fetchall()
-    cursor.execute('select name ,job_title from authapp_user INNER JOIN authapp_jobdetails ON authapp_user.id  = authapp_jobdetails.recruiter_id')
+    cursor.execute('select first_name ,job_title from authapp_user INNER JOIN authapp_jobdetails ON authapp_user.id  = authapp_jobdetails.recruiter_id')
     row1 = cursor.fetchall()
     content = {}
     payload = []
@@ -35,7 +35,7 @@ def display_job(request , user ):
 @permission_classes([IsAuthenticated])
 def display_recruiter_job(request , recruiterid):
     cursor = connection.cursor()
-    cursor.execute(f'select name,address , job_Description  from authapp_user INNER JOIN authapp_jobdetails on authapp_user.id = authapp_jobdetails.recruiter_id where authapp_jobdetails.recruiter_id = {recruiterid}')
+    cursor.execute(f'select first_name,address , job_Description  from authapp_user INNER JOIN authapp_jobdetails on authapp_user.id = authapp_jobdetails.recruiter_id where authapp_jobdetails.recruiter_id = {recruiterid}')
     row = cursor.fetchall()
     content = {}
     payload = []

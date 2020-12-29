@@ -6,11 +6,16 @@ from . models import (
     StatusMaster, RecruitersRequests, WorkersRequests , 
     )
 
+
+class ResetPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(max_length=100)
+    re_password = serializers.CharField(max_length=100)
+
 class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
-        fields = ('is_superuser','is_admin','name','username','email','password',
-                        'dob','gender','aadhar_no', 'profile_image','phone')
+        fields = ('is_superuser','is_admin','username','password',
+                        'dob','gender','aadhar_no', 'profile_image','phone','first_name','last_name')
 
 class WorkerDetailsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,4 +50,5 @@ class WorkersRequestsSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkersRequests
         fields = '__all__'
+
 

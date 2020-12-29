@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from authapp.models import Worker_Details, Job_Details, User, Categories 
+from authapp.models import Worker_Details, Job_Details, User, Categories
 from django.db import connection
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,7 +13,7 @@ import json
 # Select specific Rolecity
 
 # class WorkerCustomAPI:
-    
+
 #     def get(self, request, pk, format=None):
 #         snippet = self.get_object(pk)
 #         serializer = SnippetSerializer(snippet)
@@ -36,7 +36,7 @@ def display_by_category(request,category):
             # api = f'http://127.0.0.1:8000/userdetail/{result[11]}/'
             # user_info = requests.get(api, )
             # print(user_info.json())
-            content = { 'id': result[0], 
+            content = { 'id': result[0],
                         'city': result[1],
                         'category':result[3],
                         'visiting_charges1':result[4],
@@ -44,22 +44,21 @@ def display_by_category(request,category):
                         }
             payload.append(content)
         elif  result[6] == f'{category}':
-            content = {  'id': result[0], 
+            }
+            content = {  'id': result[0],
                         'city': result[1],
                         'category':result[6],
                         'visiting_charges':result[7],
                         'experience':result[8],
-                        }
             payload.append(content)
         else:
-            content = {  'id': result[0], 
+            content = {  'id': result[0],
                         'city': result[1],
                         'category':result[9],
                         'visiting_charges':result[10],
                         'experience':result[11],
                         }
             payload.append(content)
-
     return Response(data=payload, status=status.HTTP_200_OK)
 
 #Display all the workers regradles of there category
@@ -74,7 +73,7 @@ def display_all(request):
     content = {}
     payload = []
     for result in row:
-        content = {  'name': result[0], 
+        content = {  'name': result[0],
                     'phone': result[1],
                     'city': result[2],
                     'category_1': result[3],
@@ -90,5 +89,5 @@ def display_all(request):
                     }
         payload.append(content)
 
-    
+
     return Response(data=payload, status=status.HTTP_200_OK)

@@ -149,7 +149,7 @@ def home_smart_reg(request):
            'work':work,
            'smartphone':'0',
         }
-
         create_user_api = 'http://127.0.0.1:8000/smartreg'
+
         requests.post(create_user_api , json = data)
         return Response(data)

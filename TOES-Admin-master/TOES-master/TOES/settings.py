@@ -81,6 +81,14 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'PAGE_SIZE': 10
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -125,3 +133,4 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'media')#location where actually profile pictu
 
 
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
+LOGIN_REDIRECT_URL = 'Home'
