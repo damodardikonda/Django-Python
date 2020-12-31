@@ -7,8 +7,9 @@ from requests.auth import HTTPBasicAuth
 import requests
 import json
 
-AUTH_TOKEN = 'Token 18beb28523d2d3d3109fc516b1170188f4c05e1b'
+AUTH_TOKEN = 'Token f5be3af7fbf162161432eea21f01cd19231d5062'
 
+prof_username = ''
 def sign_in(request):
     if request.method == 'POST':
 
@@ -16,6 +17,7 @@ def sign_in(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
+        prof_username = username
         data = {
             'email': username,
             'password':  password,
@@ -87,23 +89,27 @@ def register(request):
 def create(request):
     return render( request , 'Sign/create.html')
 
+def phone_disp_second(request):
+    return render( request , 'Sign/phone_disp_second.html' )
+
 def phone_disp(request):
-    url = 'http://127.0.0.1:8000/api/withoutsmartphone/'
+    url = 'http://52.201.220.252/api/withoutsmartphone/'
     response = requests.get(url , headers = {'Authorization' : AUTH_TOKEN})
     response = response.json()
     print(response)
-    return render( request , 'Sign/phone_disp.html' , {'response'  :response})
+
+    return render( request , 'Sign/phone_disp.html',{'response'  :response} )
 
 def recruiters(request):
 
-    url = 'http://127.0.0.1:8000/job/'
+    url = 'http://52.201.220.252/job/'
     response = requests.get(url , headers = {'Authorization' : AUTH_TOKEN})
     response = response.json()
     #print(response.json())
     return render(request , 'Sign/recruiters.html', {'response' : response})
 
 def workers(request):
-    url = 'http://127.0.0.1:8000/worker/'
+    url = 'http://52.201.220.252/api/allcategories/'
     json_data={}
     '''
     Search = request.POST.get('Search')
@@ -117,9 +123,9 @@ def workers(request):
     '''
     response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
     response=response.json()
-    #print(response)
+    print(response)
     return render(request,'Sign/workers.html', {'response' : response})
-
+'''
 def workerpainter_contact(request):
     json_data={}
     data ={}
@@ -142,8 +148,9 @@ def workerpainter_contact(request):
     response = requests.get(url+endpoint  , headers={'Authorization':AUTH_TOKEN})
     response=response.json()
     return render(request , 'Sign/workerpainter.html',{'response':response})
-
+'''
 def workerpainter(request):
+    '''
     json_data={}
     data ={}
     data2={}
@@ -163,13 +170,15 @@ def workerpainter(request):
         response=response.json()
         print(" Response is"+response)
     else :
-        url = 'http://127.0.0.1:8000/api/category/painter/'
-        response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
-        response=response.json()
+    '''
+    url = 'http://52.201.220.252/api/category/painter/'
+    response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
+    response=response.json()
     return render(request , 'Sign/workerpainter.html',{'response':response})
 
 
 def workerplumber(request):
+    '''
     json_data={}
     data ={}
     data2={}
@@ -193,8 +202,47 @@ def workerplumber(request):
         response = requests.get(url+endpoint  , headers={'Authorization':AUTH_TOKEN})
         response=response.json()
     else :
-
-        url = 'http://127.0.0.1:8000/api/category/plumber/'
-        response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
-        response=response.json()
+    '''
+    url = 'http://52.201.220.252/api/category/plumber/'
+    response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
+    response=response.json()
     return render(request , 'Sign/workerplumber.html',{'response':response})
+
+
+
+def profile(request):
+    '''
+    dict = {}
+    url = 'http://127.0.0.1:8000/users/'
+    if prof_username != "":
+         dict = {'prof_username' : 'prof_username' }
+         json_data = json.dumps(dict)
+         response = requests.get(url  , data = dict, headers={'Authorization':AUTH_TOKEN})
+         response.json()
+    '''
+    url = 'http://52.201.220.252/users/me/'
+    response = requests.get(url , headers={'Authorization':AUTH_TOKEN})
+    response=response.json()
+    return render(request , 'Sign/profile.html',{'response':response})
+
+def driver(request):
+    url = 'http://52.201.220.252/api/category/driver/'
+    response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
+    response=response.json()
+    return render(request , 'Sign/driver.html',{'response':response})
+
+
+
+def electrician(request):
+    url = 'http://52.201.220.252/api/category/electrician/'
+    response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
+    response=response.json()
+    return render(request , 'Sign/electrician.html',{'response':response})
+
+
+
+def carpenter(request):
+    url = 'http://52.201.220.252/api/category/carpenter/'
+    response = requests.get(url , headers={'Authorization': AUTH_TOKEN})
+    response=response.json()
+    return render(request , 'Sign/carpenter.html',{'response':response})

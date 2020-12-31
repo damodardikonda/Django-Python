@@ -3,14 +3,14 @@
 {% block content %}
 
 
-<legend style=" margin-top : 150px; margin-left : 400px;"> Without Smartphone Workers</legend>
+<h1 style=" margin-top : 150px; margin-left : 700px;"> Without Smartphone Workers</h1>
 
 
 <div class="container" >
-  <table class="table table-bordered" style=" margin-top : 50px ;margin-left : 100px; width : 800px; ">
+  <table class="table table-bordered" style=" margin-top : 50px ;margin-left : 0px; width : 800px; ">
     <thead>
       <tr style=" background-color : #5c6bc0 ; ">
-        <th>Sr.No</th>
+
         <th>Name</th>
         <th>Contact Number</th>
         <th>City</th>
@@ -23,16 +23,13 @@
         <th>category_3</th>
         <th>category _3_vc</th>
         <th>category_3_exp</th>
-        <th>Req Cancel Count</th>
-        <th>Blocked</th>
 
 
       </tr>
     </thead>
     <tbody>  {% for i in response %}
         <tr>
-          <th scope="row">{{i.id}}</th>
-          <td>{{i.name}}</td>
+          <th scope="row">{{i.fname}}</th>
           <td>{{i.phone}}</td>
           <td>{{i.city}}</td>
           <td>{{i.category_1}}</td>
@@ -46,12 +43,12 @@
           <th>{{i.category_3_ex}}</th>
         </tr>
         {% endfor %}
-    
+
     </tbody>
   </table>
 
 
-  <a style= " margin-top : 50px; margin-left : 100px;" id = "btn1" class="btn btn-info" role="button" href= " {% url 'create' %} " >  Back </a>
+  <a style= " margin-top : 50px; margin-left : 100px;" id = "btn1" class="btn btn-info" role="button" href= " {% url 'phone_disp_second' %} " >  Back </a>
 
 
 </div>

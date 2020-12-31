@@ -14,8 +14,13 @@ urlpatterns = [
     path('workers/' ,views.workers , name ='workers' ),
     path('recruiters/' ,views.recruiters , name ='recruiters' ),
     path('workerpainter/' , views.workerpainter , name = 'workerpainter'),
-    path('workerpainter/<str:contact>' , views.workerpainter_contact),
+    #path('workerpainter/<str:contact>' , views.workerpainter_contact),
     path('workerplumber/',views.workerplumber, name='workerplumber'),
+    path('profile/', views.profile , name = 'profile'),
+    path('driver/',views.driver , name = 'driver'),
+    path('electrician/' , views.electrician , name = 'electrician'),
+    path('carpenter/' , views.carpenter , name = 'carpenter'),
+    path('phone_disp_second/' , views.phone_disp_second , name='phone_disp_second')
 
 
 ]

@@ -5,36 +5,36 @@
 
 
 
+
     <div class="container-fluid" >
       <div class="row" style="  margin-top: 108px;" >
- <center>
-        <form style="margin-left:226px;width:191%">
-            <div class="input-icons">
-                <i class="fa fa-search icon">
-              </i>
-                <input class="input-field"
-                       type="text" name = "contact"
-                       placeholder="contact" >
-            </div>
-            </form>
- </center>
-      <button style="align:float-right;margin-top : 80px;margin-left:145px" class="dropdown-toggle" data-toggle="dropdown" href="#">SELECT ROLE<span class="caret"></span></button>
+        <h1 style="margin-top : 50px; margin-left : 500px;">Workers Table</h1>
 
-                  <ul class="dropdown-menu">
-                      <li class="Active" style="margin-left : 40px"><a href="#">ALL</a></li>
-                      <li style="margin-left : 40px"><a href="{% url 'workerpainter' %}">Painters</a></li>
-                      <li style="margin-left : 40px"><a  href="{% url 'workerplumber' %}">Plumbers</a></li>
-                 </ul>
+
+      <button style="align:float-right;margin-top : 50px;margin-left:600px" class="dropdown-toggle" data-toggle="dropdown" href="#">SELECT ROLE<span class="caret"></span></button>
+      <ul class="dropdown-menu" style  = "margin-top : 50px , margin-left : 250px ">
+          <li style="margin-left : 40px" class="Active"><a href="{% url "workers" %}">ALL</a></li>
+          <li style="margin-left : 40px"><a href="{% url "workerpainter" %}">Painters</a></li>
+          <li style="margin-left : 40px"><a  href="{% url "workerplumber" %}">Plumbers</a></li>
+          <li style="margin-left : 40px"><a  href="{% url 'driver' %}">Drivers</a></li>
+          <li style="margin-left : 40px"><a  href="{% url 'electrician' %}">Electricians</a></li>
+          <li style="margin-left : 40px"><a  href="{% url 'carpenter' %}">Carpenter</a></li>
+
+
+
+     </ul>
+
       </div>
 
-      <div class="row" style="  margin-top:10px;" >
+
+      <div class="row" style="  margin-top:50px;" >
             <!--Table-->
               <table class="table table-hover table-fixed" style="margin-left: 226px;margin-right: 25px;">
 
                     <!--Table head-->
-                    <thead>
+                    <thead style=" background-color : #5c6bc0 ; ">
                       <tr>
-                        <th>Sr.No</th>
+
                         <th>Name</th>
                         <th>Contact Number</th>
                         <th>City</th>
@@ -55,8 +55,7 @@
                     <tbody>
                     {% for i in response %}
                       <tr>
-                        <th scope="row">{{i.id}}</th>
-                        <td>{{i.name}}</td>
+                        <th scope="row">{{i.fname}}</th>
                         <td>{{i.phone}}</td>
                         <td>{{i.city}}</td>
                         <td>{{i.category_1}}</td>

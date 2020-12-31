@@ -170,9 +170,9 @@ tr:nth-child(even) {
       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="{% static 'media/img_avatar.png' %}" alt="Avatar" style="width:50px"><span class="caret"></span></a>
 
       <ul class="dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Settings</a></li>
-          <li><form  method = 'post' > {% csrf_token %}<button type="submit">Sign out</button></form></li>
+        <li><a style="margin-left : 40px" href="{% url 'profile' %}">Profile</a></li>
+
+          <li><form  method = 'post' style="margin-left : 40px" > {% csrf_token %}<button type="submit">Sign out</button></form></li>
 
         </ul>
       </div>
