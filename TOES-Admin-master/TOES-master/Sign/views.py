@@ -8,12 +8,11 @@ import requests
 import json
 
 
-AUTH_TOKEN = 'Token f5be3af7fbf162161432eea21f01cd19231d5062'
+AUTH_TOKEN = 'Token 86bd0339782c65a75173c274ea96857a20362fbd'
 
 prof_username = ''
 def sign_in(request):
     if request.method == 'POST':
-        print("damodarrr")
         #Retriving username & password form login form template
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -92,7 +91,6 @@ def register(request):
 
 def create_user(request):
     print(request.method)
-    print("shiiiiiiiiiiiiiii")
     if request.method == 'POST':
         name = request.POST('name')
         dob = request.POST('dob')
@@ -119,7 +117,6 @@ def create_user(request):
         create_user_api = 'http://52.201.220.252/users/'
         requests.post(create_user_api, json=data)
         #return redirect('phone_disp_second')
-    print("chetyaa")
 
     return render(request ,'Sign/create_user.html')
 
@@ -169,7 +166,7 @@ def recruiters(request):
     url = 'http://52.201.220.252/job/'
     response = requests.get(url , headers = {'Authorization' : AUTH_TOKEN})
     response = response.json()
-    #print(response.json())
+    print(response)
     return render(request , 'Sign/recruiters.html', {'response' : response})
 
 def workers(request):
