@@ -7,12 +7,13 @@ from requests.auth import HTTPBasicAuth
 import requests
 import json
 
+
 AUTH_TOKEN = 'Token f5be3af7fbf162161432eea21f01cd19231d5062'
 
 prof_username = ''
 def sign_in(request):
     if request.method == 'POST':
-
+        print("damodarrr")
         #Retriving username & password form login form template
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -48,7 +49,10 @@ def sign_in(request):
 
 
 def sign_up(request):
+    print(request.method)
+
     if request.method == 'POST':
+        print("dikomhg")
         name = request.POST.get('name')
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -69,7 +73,7 @@ def sign_up(request):
         create_user_api = 'http://52.201.220.252/authapp/users/'
         requests.post(create_user_api, json=data)
         return redirect('sign_in')
-    return render(request , 'Sign/sign_up.html')
+    return render(request , 'Sign/sign_up.html',)
 
 
 def forget_pass(request):
@@ -86,10 +90,70 @@ def home(request):
 def register(request):
     return render(request, 'Sign/register.html')
 
-def create(request):
-    return render( request , 'Sign/create.html')
+def create_user(request):
+    print(request.method)
+    print("shiiiiiiiiiiiiiii")
+    if request.method == 'POST':
+        name = request.POST('name')
+        dob = request.POST('dob')
+        phone = request.POST('phone')
+        gender = request.POST('gender')
+        address = request.POST('address')
+        username = request.POST('username')
+        aadhar = request.POST('aadhar')
+
+        data = {
+            'is_superuser':0,
+            'is_admin':1,
+            'name':name,
+            'dob':dob,
+            'phone': phone,
+            'gender':gender,
+            'address':address,
+            'username':username,
+            'aadhar':aadhar,
+            'smartphone':True,
+        }
+        print("heyyyyyy")
+        print(data)
+        create_user_api = 'http://52.201.220.252/users/'
+        requests.post(create_user_api, json=data)
+        #return redirect('phone_disp_second')
+    print("chetyaa")
+
+    return render(request ,'Sign/create_user.html')
 
 def phone_disp_second(request):
+    print(request.method)
+    if request.method == 'POST':
+        category1 = request.POST.get('category1')
+        category1_vc = request.POST.get('category1_vc')
+        category1_ex = request.POST.get('category1_ex')
+        category2 = request.POST.get('category2')
+        category2_vc = request.POST.get('category2_vc')
+        category2_ex = request.POST.get('category2_ex')
+        category3 = request.POST.get('category3')
+        category3_vc = request.POST.get('category3_vc')
+        category3_ex = request.POST.get('category3_ex')
+        city = request.POST.get('city')
+        data = {
+            'city':city,
+            'category1':category1,
+            'category1_vc':category1_vc,
+            'category1_ex':category1_ex,
+            'category2': 'category2',
+            'category2_vc':category2_vc,
+            'category2_ex':category2_ex,
+            'category3':category3,
+            'category3_vc':category3_vc,
+            'category3_ex':category3_ex,
+
+        }
+
+        create_user_api = 'http://52.201.220.252/worker/'
+        requests.post(create_user_api, json=data)
+        return redirect('phone_disp')
+
     return render( request , 'Sign/phone_disp_second.html' )
 
 def phone_disp(request):

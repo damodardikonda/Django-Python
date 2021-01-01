@@ -11,3 +11,7 @@ def good_afternoon(request):
 
 def good_evening(request):
     return HttpResponse('<h1> Gooodd evening have a nice day</h1>')
+
+def checking_user(request):
+    print(request.method)
+    return render(request , 'testuser/sample')

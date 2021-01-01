@@ -4,34 +4,35 @@
 
      <legend style=" margin-top : 100px; margin-left : 400px;"> Registration Form for Without Smartphone Workers</legend>
 
-          <form>
+          <form method = "post">
+            {% csrf_token %}
              <div class="row" style=" margin-top : 40px ; margin-left : 200px;">
                  <div class="col">
                      <label for=" c1 ">  Category 1</label>
-                     <input type="text" class="form-control" placeholder=" category" style="background-color : #33b5e5 ">
+                     <input type="text" class="form-control" placeholder=" category" name="category1" style="background-color : #33b5e5 ">
                   </div>
                   <div class="col">
                         <label for=" c1vc "> Category 1 Visiting Charges </label>
-                        <input type="text" class="form-control" placeholder=" visiting_charges " style="background-color : #33b5e5 ">
+                        <input type="text" class="form-control" placeholder=" visiting_charges " name="category1_vc"style="background-color : #33b5e5 ">
                   </div>
                   <div class="col">
                       <label for="c1e"> Category 1 Experience </label>
-                      <input type="text" class="form-control" placeholder="experience" style="background-color : #33b5e5 ">
+                      <input type="text" class="form-control" placeholder="experience" name="category1_ex" style="background-color : #33b5e5 ">
                     </div>
 
                  </div>
                  <div class="row" style=" margin-top : 20px ; margin-left : 200px;">
                    <div class = "col" >
                             <label for="c2"> Category 2 </label>
-                            <input type="text" class="form-control" placeholder="category" style="background-color : #33b5e5 ">
+                            <input type="text" class="form-control" placeholder="category" name="category2" style="background-color : #33b5e5 ">
                       </div>
                           <div class="col">
                               <label for="c2vc"> Category 2 Visiting Charges</label>
-                              <input type="text" class="form-control" placeholder="visiting_charges" style="background-color : #33b5e5 ">
+                              <input type="text" class="form-control" placeholder="visiting_charges" name="category2_vc" style="background-color : #33b5e5 ">
                            </div>
                            <div class="col">
                                <label for="c2e"> Category 2 Experience </label>
-                               <input type="text" class="form-control" placeholder=" experience" style="background-color : #33b5e5 ">
+                               <input type="text" class="form-control" placeholder=" experience" name="category2_ex" style="background-color : #33b5e5 ">
                             </div>
 
                           </div>
@@ -39,19 +40,36 @@
                              <div class="row" style=" margin-top : 20px ; margin-left : 200px;">
                                  <div class="col">
                                      <label for="c3"> Category 3 </label>
-                                     <input type="text" class="form-control" placeholder="category" style="background-color : #33b5e5 ">
+                                     <input type="text" class="form-control" placeholder="category" name="category3" style="background-color : #33b5e5 ">
                                   </div>
                                   <div class="col">
                                         <label for="c3vc"> Category 3 Visiting Charges </label>
-                                        <input type="text" class="form-control" placeholder="visiting_charges " style="background-color : #33b5e5 ">
+                                        <input type="text" class="form-control" placeholder="visiting_charges " name="category3_vc" style="background-color : #33b5e5 ">
                                   </div>
                                   <div class="col">
                                       <label for="c3e"> Category 3 Experience </label>
-                                      <input type="text" class="form-control" placeholder=" experience" style="background-color : #33b5e5 ">
+                                      <input type="text" class="form-control" placeholder=" experience" name="category3_ex"style="background-color : #33b5e5 ">
                                    </div>
                                  </div>
 
-                                 <a style= " margin-top : 100px; margin-left : 1070px;" id = "btn1" class="btn btn-info" role="button" href= " {% url 'phone_disp' %} " > Log In</a>
-          </form>
+                                <div class="row" style=" margin-top : 20px ; margin-left : 200px;">
+                                      <div class="col">
+                                          <label for="city"> City </label>
+                                                <input type="text" class="form-control" placeholder="City" name="city" style="background-color : #33b5e5">
+                                       </div>
+                                       </div>
+
+                                     <div class="row" style=" margin-top : 20px ; margin-left : 200px;">
+                                         <div class="col">
+                                           <a style= " margin-top :0px; margin-left : 200px;" id = "btn1" class="btn btn-info" role="button" href= " {% url 'create_user' %} " > Back</a>
+
+                                          <div class="col">
+                                            <a style= " margin-top : 50px; margin-left : 900px;" id = "btn1" class="btn btn-info" role="button" href= " {% url 'phone_disp' %} " > Log In</a>
+
+                                          </div>
+                                        </div>
+                                        </div>
+
+                                      </form>
 
 {% endblock %}

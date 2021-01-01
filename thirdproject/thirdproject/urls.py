@@ -22,5 +22,5 @@ urlpatterns = [
     path('morning/',test_view.good_morning,name='morning'),
     path('afternoon/',test_view.good_afternoon,name='afternoon'),
     path('evening/',test_view.good_evening,name='evening'),
-
+    path('sample/' ,test_view.checking_user , name = 'sample')
 ]
